@@ -130,6 +130,13 @@ a {
 /* TODO: Replace with image later */
 #header {
   background-color: #484848;
+  padding-top: 8%;
+}
+
+#role {
+  color: #111;
+  font-size: 1.7rem;
+  margin: 0 1%;
 }
 
 .flex-box {
@@ -175,6 +182,42 @@ span {
   text-align: center;
 }
 
+.project-entry img {
+  max-width: 200px;
+  height: auto;
+  vertical-align: middle;
+}
+
+a.anchor {
+  display: block;
+  position: relative;
+  top: -50px;
+  visibility: hidden;
+}
+
+/* Bootstrap specific customizations */
+.navbar {
+  margin-bottom: 0;
+}
+
+.navbar a {
+  margin-top: 0;
+}
+
+.nav a {
+  cursor: hand;
+}
+
+.navbar .navbar-header {
+  padding-left: 2%;
+  padding-right: 2%;
+  font-weight: bold;
+}
+
+span.icon-bar {
+  padding: 0;
+}
+
 /* Media queries to handle various device widths */
 
 @media only screen and (max-width: 1024px) {
@@ -198,6 +241,27 @@ span {
   }
   .welcome-message {
     display: none;
+  }
+  #header {
+    padding-top: 12%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  #header {
+    padding-top: 20%;
+  }
+  #role {
+    display: block;
+  }
+
+  h1 {
+    font-size: 32px;
+  }
+
+  h2 {
+    font-weight: bold;
+    font-size: 22px;
   }
 }
 
