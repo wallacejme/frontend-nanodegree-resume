@@ -12,7 +12,7 @@ Cameron Pittman
 These are HTML strings. As part of the course, you'll be using JavaScript functions
 replace the %data% placeholder text you see in them.
 */
-var HTMLheaderName = '<h1 id="name">%data%</h1>';
+var HTMLheaderName = '<h1 id="name" class="name">%data%</h1>';
 var HTMLheaderRole = '<span id="role">%data%</span><hr>';
 
 var HTMLcontactGeneric = '<li class="flex-item"><span class="orange-text">%contact%</span><span class="white-text">%data%</span></li>';
@@ -55,7 +55,7 @@ var HTMLonlineSchool = ' - %data%</a>';
 var HTMLonlineDates = '<div class="date-text">%data%</div>';
 var HTMLonlineURL = '<br><a href="#">%data%</a>';
 
-var internationalizeButton = '<button>Internationalize</button>';
+var internationalizeButton = '<li><a id="internationalize" class="material-icons" href="#">language</a></li>';
 var googleMap = '<div id="map"></div>';
 
 
@@ -63,12 +63,36 @@ var googleMap = '<div id="map"></div>';
 The Internationalize Names challenge found in the lesson Flow Control from JavaScript Basics requires you to create a function that will need this helper code to run. Don't delete! It hooks up your code to the button you'll be appending.
 */
 $(document).ready(function() {
-  $('button').click(function() {
-    var $name = $('#name');
+  $('#internationalize').click(function() {
+    var $names = $('.name');
+
+    toggleNamesFormat($names);
+    $(this).toggleClass("active");
+    /*
     var iName = inName($name.text()) || function(){};
     $name.html(iName);
+    */
   });
 });
+
+var internationalized = false;
+function toggleNamesFormat($selector){
+
+  var formattedName;
+  $selector.each(function() {
+    
+    if(internationalized) {
+      formattedName = resetName($(this).text()) || function () {};
+    } else {
+      formattedName = inName($(this).text()) || function () {};
+    }
+
+    $(this).html(formattedName);
+  });
+
+  internationalized = !internationalized;
+}
+
 
 /*
 The next few lines about clicks are for the Collecting Click Locations quiz in the lesson Flow Control from JavaScript Basics.
@@ -177,7 +201,7 @@ function initializeMap() {
 
     // hmmmm, I wonder what this is about...
     google.maps.event.addListener(marker, 'click', function() {
-      // your code goes here!
+      infoWindow.open(map, marker);
     });
 
     // this is where the pin actually gets added to the map.

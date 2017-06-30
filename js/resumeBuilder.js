@@ -141,13 +141,31 @@ work.display = function(){
   }
 }
 
+/*
+ * Internationalization and name-related functions.
+ */
+function captilize(name) {
+  name = name.trim();
+  name = name[0].toUpperCase() + name.slice(1).toLowerCase();
+
+  return name;
+}
+
 function inName(name){
   name = name.trim().split(" ");
 
-  name[0] = name[0][0].toUpperCase() + name[0].slice(1).toLowerCase();
+  name[0] = captilize(name[0]);
   name[1] = name[1].toUpperCase();
 
   return (name[0] + " " + name[1]);
+}
+
+function resetName(name) {
+  name = name.trim().split(" ");
+  name[0] = captilize(name[0]);
+  name[1] = captilize(name[1]);
+
+  return name[0] + " " + name[1];
 }
 
 projects.display = function () {
@@ -187,8 +205,6 @@ education.displayOnlineCourses = function () {
   }
 }
 
-$("#main").append(internationalizeButton);
-
 bio.display();
 work.display();
 projects.display();
@@ -221,3 +237,5 @@ $(".nav > li").click(function(e){
   console.log("idNav: " + idNav + ", anchorRef: " + bussola[idNav]);
   jumpToElement(bussola[idNav]);
 });
+
+$("#navbar-right-menu").append(internationalizeButton);
